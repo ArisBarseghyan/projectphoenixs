@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>models </title>
+    <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+
+</head>
+<body>
+{% include 'home/base.html' %}
+{% for com in company %}
+<div class="wrapper">
+
+    <div class="card">
+        <a href="{% url 'company:detail' com.pk %}" class="header header_home">{{ com.name }}</a>
+        <div style="display:flex;">
+            <div class="content content_home">
+            <h1 class>{{ com.country }}</h1></div>
+        </div>
+            <div class="image">
+                <img src="{{ com.logo.url }}">
+            </div>
+
+    </div>
+
+</div>
+{% endfor %}
+</body>
+</html>

@@ -3,28 +3,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>models </title>
+    <title>exclusive</title>
     <link rel="stylesheet" href="{% static 'css/cards.css' %}">
-
 </head>
 <body>
 {% include 'home/base.html' %}
 {% for car in cars %}
+{% if car.body_type != "supercar" and car.exclusive == True %}
+
 <div class="wrapper">
 
     <div class="card">
         <a href="{% url 'detail' car.pk %}" class="header header_home">{{ car.company }} {{ car.name }}</a>
         <div style="display:flex;">
             <div class="content content_home">
-            <h1 class="formatted-number">{{ car.price }}</h1></div>
-        </div>
-            <div class="image">
-                <img src="{{ car.image.url }}">
-            </div>
-
+                <h1 class="formatted-number">{{ car.price }}</h1></div>
+            <h2>{{ car.body_type }}</h2></div>
+    </div>
+    <div class="image">
+        <img src="{{ car.image.url }}">
     </div>
 
 </div>
+{% endif %}
+</div>
+
 {% endfor %}
 </body>
 <script>
@@ -34,6 +37,9 @@ formattedNumbers.forEach((element) => {
   const formattedNumber = number.toLocaleString('en-US').replace(/,/g, '.') + ' $';
   element.textContent = formattedNumber;
 });
+
+
+
 
 
 

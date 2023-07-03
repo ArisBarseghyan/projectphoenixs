@@ -8,9 +8,9 @@ def home_page(request):
     return render(request, 'home/home_page.html')
 
 
-def models(request):
+def supercars(request):
     cars = Car.objects.all()
-    return render(request, 'models/models.html', {'cars': cars})
+    return render(request, 'models/supercars.html', {'cars': cars})
 
 
 def car_detail(request, pk):
@@ -48,3 +48,7 @@ def registration_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def exclusive(request):
+    cars = Car.objects.all()
+    return render(request, 'models/exclusive.html', {'cars': cars})
