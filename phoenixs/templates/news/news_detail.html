@@ -1,0 +1,24 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% include 'home/base.html' %}
+<div class="main">
+    <ul class="cards">
+        <li class="cards_item">
+            <div class="card">
+                <div class="card_image"><img src="{{ news.poster.url }}">
+                </div>
+                <div class="card_content">
+                    <h2 class="card_title">{{ news.title }}</h2>
+                    <div class="card_text">
+                        <p>{{ news.info }}</p>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </li>
+    </ul>
+</div>
+

@@ -7,20 +7,30 @@
     <link rel="stylesheet" href="{% static 'css/news_card.css' %}">
     <link rel='stylesheet'
           href='https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap'>
+    <style>
+  .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+    </style>
 </head>
 <body>
 {% include 'home/base.html' with Phoenix_news='Phoenix.com' %}
-{% for com in company %}
+{% for news in all_news %}
 <section class="articles">
     <article>
         <div class="article-wrapper">
             <figure>
-                <img src="{{ com.logo.url }}" alt=""/>
+                <img src="{{ news.poster.url }}" alt=""/>
             </figure>
             <div class="article-body">
-                <h2>{{ com.name }}</h2>
-
-                <a href="{% url 'company:detail' com.pk %}" class="read-more">
+                <h2>{{ news.title }}</h2>
+                <p class="ellipsis">
+                    {{ news.info }}
+                </p>
+                <a href="{% url 'news:detail' news.pk %}" class="read-more">
                     Read more <span class="sr-only">about this is some title</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
