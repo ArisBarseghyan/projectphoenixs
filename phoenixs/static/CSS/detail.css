@@ -10,7 +10,12 @@
   display: flex;
   align-items: center;
 }
-
+.figure {
+    margin: 0;
+    padding: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
 .details h1 {
   margin-right: 1rem; /* Adjust the value to increase or decrease the distance */
 }

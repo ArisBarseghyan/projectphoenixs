@@ -1,7 +1,8 @@
-from .models import Car
+from .models import Car, Comment
 from .forms import RegistrationForm, LoginForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from .forms import CommentForm
 
 
 def home_page(request):
@@ -15,9 +16,19 @@ def supercars(request):
 
 def car_detail(request, pk):
     car = get_object_or_404(Car, pk=pk)
-    return render(request, 'models/detail.html', {'car': car})
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.car = car
+            comment.save()
+    else:
+        form = CommentForm()
 
+    comments = Comment.objects.filter(car=car)
 
+    return render(request, 'models/detail.html', {'car': car, 'comment': form, 'comments': comments})
 
 
 def login_view(request):
@@ -45,9 +56,11 @@ def registration_view(request):
         form = RegistrationForm()
     return render(request, 'login/registration.html', {'form': form})
 
+
 def logout_view(request):
     logout(request)
     return redirect('home')
+
 
 def exclusive(request):
     cars = Car.objects.all()

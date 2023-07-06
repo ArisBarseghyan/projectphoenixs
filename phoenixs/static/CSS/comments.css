@@ -1,0 +1,29 @@
+.comments-directory {
+  background-color: white;
+}
+
+
+.comments-directory .comment {
+  color: black;
+
+.comments-directory .comment .header {
+  color: black;
+}
+.comments-directory .comment .content {
+  color: black;
+}
+
+
+.comments-directory .comment .author-info {
+  color: black;
+}
+
+.comments-directory .comment {
+  border-color: black;
+}
+
+
+.comments-directory .submit-button {
+  background-color: black;
+  color: white;
+}
