@@ -7,10 +7,11 @@
     <ul class="cards">
         <li class="cards_item">
             <div class="card">
-                <div class="card_image"><img class='figure' src="{{ car.image.url }}" alt="mixed vegetable salad in a mason jar. ">
+                <div class="card_image"><img class='figure' src="{{ car.image.url }}"
+                                             alt="mixed vegetable salad in a mason jar. ">
                 </div>
                 <div class="card_content">
-                    <h2 class="card_title">{{ car.company }} {{ car.name }}</h2>
+                    <h2 class="card_title">{{ car.company }} {{ car.name }}</h2>z
                     <div class="card_text">
                         <p>{{ car.description }}</p>
 
@@ -33,37 +34,39 @@
                     <img src="{% static 'icons/petrol.png' %}">
                     <h2>{{ car.engine_type }}</h2>
                 </div>
-                <div class="comments-directory">
-
-                    {% for comment in comments %}
-                    <div class="card p-3">
-
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <div class="user d-flex flex-row align-items-center">
-                        <span><small class="font-weight-bold text-primary">{{ comment.user }}</small> <small
-                                class="font-weight-bold">{{ comment.content }}</small></span>
-                            </div>
-
-
-                            <small>{{ comment.timestamp }}</small>
-
-                        </div>
-                        {% empty %}
-                        <p>No comments yet.</p>
-                        {% endfor %}
-                        <form method="post" action="{% url 'car_detail' car.pk %}">
-                            {% csrf_token %}
-                            {{ comment.as_p }}
-                            <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                                <button type="submit" class="button" type="button">Comment</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
 
         </li>
     </ul>
 </div>
 
+{% if user.is_authenticated %}
+<div class="comments-directory">
+
+    {% for comment in comments %}
+
+    <div class="comment_card p-3">
+        <div class="d-flex justify-content-center py-2 pb-3">
+            <div class="second py-2 px-2"><span class="text1">{{ comment.content }}</span>
+                <div class="d-flex justify-content-between py-1 pt-2">
+                    <div><img src="https://cdn-icons-png.flaticon.com/512/666/666201.png" width="18"><span
+                            class="text2"> {{ comment.user }}</span></div>
+                    <div><span class="text3">Upvote?</span><span class="thumbup"><i
+                </div>
+            </div>
+        </div>
+
+        {% empty %}
+        <p>No comments yet.</p>
+        {% endfor %}
+        <form method="post" action="{% url 'car_detail' car.pk %}">
+            {% csrf_token %}
+            <textarea name="content" cols="40" rows="10" required="" id="id_content">
+                            </textarea>
+            <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                <button type="submit" class="submit-button" type="button">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endif %}
 

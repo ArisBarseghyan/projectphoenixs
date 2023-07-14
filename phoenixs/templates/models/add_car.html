@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/post_car.css' %}">
+</head>
+<body>
+{% include 'home/base.html' %}
+<div class="form-container">
+    <form class="car-form">
+
+        {% csrf_token %}
+        <input form="id_name" class="form-input" placeholder="Name">
+        {{ car.company }}
+        {{ car.body_type }}
+        {{ car.engine_type }}
+        <input type="file" name="image" accept="image/*" id="id_image">
+        <textarea name="description" style="resize: none;" class="form-input" cols="30" rows="10" id="id_description" placeholder="Description"></textarea>
+        <input form="id_horsepower" class="form-input" placeholder="horsepower">
+        <input form="id_price" class="form-input" placeholder="price">
+        <button type="submit" class="form-button">add</button>
+
+    </form>
+</div>
+</body>
+</html>

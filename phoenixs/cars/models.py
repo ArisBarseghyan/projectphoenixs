@@ -21,7 +21,6 @@ BODY_TYPE_CHOICES = (
 
 
 class Car(models.Model):
-    exclusive = models.BooleanField(null=True, blank=True)
     company = models.ForeignKey('Company', null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=40, null=True, blank=True)
     image = models.ImageField(null=True, blank=True, upload_to='cars_images/')
@@ -52,3 +51,5 @@ class Comment(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'{self.content}'

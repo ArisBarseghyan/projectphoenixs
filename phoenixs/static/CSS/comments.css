@@ -1,8 +1,23 @@
 .comments-directory {
-  background-color: white;
+      display: flex;
+    padding: 0rem;
+    max-width: 802px;
+    margin: 1 auto;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
-
-
+.font-weight-bold{
+    text-overflow = ellipsis;
+}
+.comment_card {
+    background-color: #6c040454;
+    border-radius: 0.25rem;
+    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-width: 25rem
+}
 .comments-directory .comment {
   color: black;
 
@@ -13,7 +28,7 @@
   color: black;
 }
 
-
+}
 .comments-directory .comment .author-info {
   color: black;
 }
@@ -24,6 +39,30 @@
 
 
 .comments-directory .submit-button {
-  background-color: black;
-  color: white;
+   width: 20%;
+    padding: 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #ebebeb00;
+    border: none;
+    border-radius: 26px;
+    cursor: pointer;
+}
+textarea {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+textarea {
+    padding: 10px;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
 }

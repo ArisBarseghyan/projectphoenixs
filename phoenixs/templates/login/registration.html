@@ -9,14 +9,44 @@
 
 <body>
 {% include 'home/base.html' %}
+
 <div class="registration-container">
 
     <form method="POST" class="registration-form">
         {% csrf_token %}
-         {{ form.as_p }}
+        <h2>Registration</h2>
+        <div class="input-group">
+            <input class="form-input" type="text" name="username" value="Admin" maxlength="150" autofocus=""
+                   required=""
+                   id="id_username">
+        </div>
+        <div class="input-group">
+            <input class="form-input" type="email" name="email" class="form-control" placeholder="Email" required=""
+                   id="id_email">
+        </div>
+        <div class="input-group">
+            <input class="form-input" type="password" name="password1" autocomplete="new-password" required=""
+                   id="psw"
+                   placeholder="Password">
 
-    <button type="submit">Register</button>
-</form>
+        </div>
+        <div class="input-group">
+            <input class="form-input" type="password" name="password2" autocomplete="new-password" required=""
+                   id="id_password2"
+                   placeholder="Confirm Password">
+        </div>
+
+
+        <button type="submit" class="form-button">Login</button>
+        <div id="message">
+            <p id="letter" class="invalid"><b>lowercase</b> letter</p>
+            <p id="capital" class="invalid"><b>capital (uppercase)</b> letter</p>
+            <p id="number" class="invalid"><b>number</b></p>
+            <p id="length" class="invalid"><b>8 characters</b></p>
+        </div>
+    </form>
+
 </div>
+<script src="{% static 'js/script.js' %}."></script>
 </body>
-</html>
+

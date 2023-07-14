@@ -2,11 +2,22 @@ from .models import Car, Comment
 from .forms import RegistrationForm, LoginForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .forms import CommentForm
+from .forms import CommentForm, CarForm
 
 
 def home_page(request):
     return render(request, 'home/home_page.html')
+
+
+def add_car(request):
+    if request.method == 'POST':
+        form = CarForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('models/cars.html')
+    else:
+        form = CarForm()
+    return render(request, 'models/add_car.html', {'car': form})
 
 
 def supercars(request):
@@ -40,7 +51,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # Replace 'home' with your desired redirect URL
+                return redirect('home')
     else:
         form = LoginForm()
     return render(request, 'login/login.html', {'form': form})
@@ -62,6 +73,6 @@ def logout_view(request):
     return redirect('home')
 
 
-def exclusive(request):
+def cars(request):
     cars = Car.objects.all()
-    return render(request, 'models/exclusive.html', {'cars': cars})
+    return render(request, 'models/cars.html', {'cars': cars})
