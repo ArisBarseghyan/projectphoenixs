@@ -13,11 +13,11 @@
     <ul class="navbar-menu">
         <li class="nav-item"><a href="{% url 'models' %}">Super Cars</a></li>
         <li class="nav-item"><a href="{% url 'cars' %}">Cars For Sale</a></li>
-        <li class="nav-item"><a href="{% url 'company:Manufacturers' %}">Car Manufacturer</a></li>
+        <li class="nav-item"><a href="{% url 'Manufacturers' %}">Car Manufacturer</a></li>
         <li class="nav-item"><a href="{% url 'news:news' %}">News</a></li>
         {% if user.is_authenticated %}
         <li class="nav-item"><a href="{% url 'add' %}">Post an Ad</a></li>
-
+        <li class="nav-item"><a href="{% url 'account' %}">{{ user.username }}</a></li>
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
             <li class="nav-item">

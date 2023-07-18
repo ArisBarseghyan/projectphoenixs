@@ -5,31 +5,43 @@
     <meta charset="UTF-8">
     <title>cars</title>
     <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
 </head>
 <body>
 
 {% include 'home/base.html' %}
-{% for car in cars %}
-{% if car.body_type != "supercar" %}
+<form method="GET">
+    {% csrf_token %}
+    {{ form.body_type }}
+    <button class="form-button" type="submit">Filter</button>
+</form>
+{% for car in page_obj %}
+    {% if car.body_type != "supercar" %}
+    <div class="wrapper">
+        <div class="card">
+            <a href="{% url 'detail' car.pk %}" class="header header_home">{{ car.company }} {{ car.name }}</a>
+            <div style="display:flex;">
+                <div class="content content_home">
+                    <h1 class="formatted-number">{{ car.price }}$</h1></div>
+                <h2>{{ car.body_type }}</h2></div>
+                <h3> {{ car.year }}</h3>
 
-<div class="wrapper">
-
-    <div class="card">
-        <a href="{% url 'detail' car.pk %}" class="header header_home">{{ car.company }} {{ car.name }}</a>
-        <div style="display:flex;">
-            <div class="content content_home">
-                <h1 class="formatted-number">{{ car.price }}</h1></div>
-            <h2>{{ car.body_type }}</h2></div>
+        </div>
+        <div class="image">
+            <img src="{{ car.image.url }}">
+        </div>
     </div>
-    <div class="image">
-        <img src="{{ car.image.url }}">
-    </div>
-
-</div>
-{% endif %}
-</div>
-
+    {% endif %}
 {% endfor %}
+<center>
+    {% if page_obj.has_previous %}
+    <button class="pagination-number"><a href="?page={{ page_obj.previous_page_number }}">Previous</a></button>
+    {% endif %}
+    <button class="pagination-number"><span>{{ page_obj.number }}</span></button>
+    {% if page_obj.has_next %}
+    <button class="pagination-number"><a href="?page={{ page_obj.next_page_number }}">Next</a></button>
+    {% endif %}
+</center>
 </body>
 <script>
 const formattedNumbers = document.querySelectorAll('.formatted-number');
@@ -38,11 +50,5 @@ formattedNumbers.forEach((element) => {
   const formattedNumber = number.toLocaleString('en-US').replace(/,/g, '.') + ' $';
   element.textContent = formattedNumber;
 });
-
-
-
-
-
-
 </script>
 </html>

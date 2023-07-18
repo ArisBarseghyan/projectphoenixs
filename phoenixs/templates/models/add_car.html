@@ -9,19 +9,18 @@
 <body>
 {% include 'home/base.html' %}
 <div class="form-container">
-    <form class="car-form">
-
+    <form class="car-form" method="POST" action="{% url 'add' %}" enctype="multipart/form-data">
         {% csrf_token %}
-        <input form="id_name" class="form-input" placeholder="Name">
+        <input type="text" name="name" class="form-input" placeholder="Name">
+        <input type="number" min="1900" max="2099" step="1" value="2016" id="id_year">
         {{ car.company }}
         {{ car.body_type }}
         {{ car.engine_type }}
         <input type="file" name="image" accept="image/*" id="id_image">
         <textarea name="description" style="resize: none;" class="form-input" cols="30" rows="10" id="id_description" placeholder="Description"></textarea>
-        <input form="id_horsepower" class="form-input" placeholder="horsepower">
-        <input form="id_price" class="form-input" placeholder="price">
-        <button type="submit" class="form-button">add</button>
-
+        <input type="text" name="horsepower" class="form-input" placeholder="Horsepower">
+        <input type="text" name="price" class="form-input" placeholder="Price">
+        <button type="submit" class="form-button">Add</button>
     </form>
 </div>
 </body>

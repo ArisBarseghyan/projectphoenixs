@@ -30,4 +30,24 @@ class CommentForm(forms.ModelForm):
 class CarForm(forms.ModelForm):
     class Meta:
         model = Car
-        fields = ['company', 'name', 'image', 'description', 'engine_type', 'body_type', 'horsepower', 'price']
+        fields = ['company', 'name', 'year', 'image', 'description', 'engine_type', 'body_type', 'horsepower', 'price']
+
+
+class VehicleFilterForm(forms.Form):
+    BODY_TYPE_CHOICES = [
+        ('sedan', 'Sedan'),
+        ('suv', 'SUV'),
+        ('supercar', 'Supercar'),
+        ('pickup', 'Pickup'),
+        ('hatchback', 'Hatchback'),
+        ('convertible', 'Convertible'),
+        ('minivan', 'Minivan'),
+        ('coupe', 'Coupe'),
+        ('sportscar', 'Sports car'),
+        ('fastback', 'Fastback')
+    ]
+    body_type = forms.ChoiceField(choices=BODY_TYPE_CHOICES, required=False, label='Body Type')
+
+
+class SendForm(forms.Form):
+    user_mail = forms.EmailField()

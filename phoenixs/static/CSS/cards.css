@@ -5,7 +5,45 @@ a {
   text-decoration: none;
 }
 
+.pagination-number {
+    width: 5%;
+    padding: 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #6c0404;
+    border: none;
+    border-radius: 26px;
+    cursor: pointer;
+}
 
+.pagination\:number {
+  font-family: "Titillium Web", sans-serif;
+  --size: 32px;
+  --margin: 6px;
+  margin: 0 var(--margin);
+  border-radius: 6px;
+  background: #202020;
+  max-width: auto;
+  min-width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 6px;
+  @media (hover: hover) {
+    &:hover {
+      background: lighten(#202020, 3%);
+    }
+  }
+  &:active {
+      background: lighten(#202020, 3%);
+  }
+}
+.pagination\:active {
+  background: lighten(#202020, 3%);
+  position: relative;
+}
 .wrapper {
   margin-bottom: 20px;
   position: relative;

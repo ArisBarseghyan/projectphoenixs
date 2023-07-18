@@ -15,13 +15,13 @@
     <section class="articles">
         <article>
             <div class="article-wrapper">
-                <figure>
-                    <img src="{{ com.logo.url }}" alt=""/>
-                </figure>
+                <div>
+                    <img src="{{ com.logo.url }}">
+                </div>
                 <div class="article-body">
                     <h2>{{ com.name }}</h2>
 
-                    <a href="{% url 'company:detail' com.pk %}" class="read-more">
+                    <a href="{% url 'com_detail' com.pk %}" class="read-more">
                         Read more <span class="sr-only">about this is some title</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd"

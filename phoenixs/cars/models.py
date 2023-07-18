@@ -23,6 +23,7 @@ BODY_TYPE_CHOICES = (
 class Car(models.Model):
     company = models.ForeignKey('Company', null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=40, null=True, blank=True)
+    year = models.IntegerField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True, upload_to='cars_images/')
     description = models.TextField(null=True, blank=True)
     engine_type = models.CharField(max_length=100, choices=ENGINE_TYPE_CHOICES, null=True, blank=True)
@@ -40,7 +41,7 @@ class Car(models.Model):
 class Company(models.Model):
     name = models.CharField(max_length=40, null=True, blank=True)
     country = models.CharField(max_length=40, null=True, blank=True)
-    logo = models.ImageField(null=True, blank=True, upload_to=f'logo/')
+    logo = models.ImageField(null=True, blank=True, upload_to='logo/')
 
     def __str__(self):
         return f'{self.name}'
